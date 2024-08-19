@@ -4,15 +4,14 @@ import { Component } from "react";
    
     render(){
         console.log(this.props);
-        const {movies,addStars}=this.props
-        const {movies,decStarsStars}=this.props
+       const {movies,addStars,decStars,toggleFvt,toggleCart}=this.props
 
         const {title,plot,price,rating,stars,Fvt,isInCart,poster}=this.props.movies;
         return(
             <div className="main">
                 <div className="movie-card">
                     <div className="left">
-                    {poster}
+                    <img alt="poster" src={poster}/>
                     </div>
                     <div className="right">
                         <div className="title">{title}</div>
@@ -27,8 +26,8 @@ import { Component } from "react";
                                 <span className="starCount">{stars}</span>
                             </div>
                             
-                            <button className={Fvt?"unfavourite-btn":"favourite-btn"} onClick={this.handleFav} >{Fvt?"unfavourite":"favourite"}</button>
-                            <button className={isInCart?"unfavourite-btn":"cart-btn"} onClick={this.handleAddToCart}>{isInCart?"Remove cart":"Add to Cart"}</button>
+                            <button className={Fvt?"unfavourite-btn":"favourite-btn"} onClick={()=>{toggleFvt(movies)}} >{Fvt?"unfavourite":"favourite"}</button>
+                            <button className={isInCart?"unfavourite-btn":"cart-btn"} onClick={()=>{toggleCart(movies)}}>{isInCart?"Remove cart":"Add to Cart"}</button>
                         </div>
                     </div>
                 </div>

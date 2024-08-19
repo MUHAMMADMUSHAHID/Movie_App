@@ -18,6 +18,7 @@ class MovieList extends Component{
         {
             title:"PATHAN",
             plot:"Pathaan is a 2023 Indian Hindi-language action thriller film co-written and directed by Siddharth Anand and produced by Aditya Chopra under Yash Raj Films.",
+            poster:"https://i.pinimg.com/236x/64/8b/a3/648ba30ac2f9e5d028e0117c69619539.jpg",
             price:399,
             rating:8.5,
             stars:0,
@@ -27,6 +28,7 @@ class MovieList extends Component{
         {
             title:"DUNKI",
             plot:"Dunki is a 2023 Indian Hindi-language comedy drama film based on the illegal immigration technique called donkey flight",
+            poster:"https://i.pinimg.com/236x/5f/34/81/5f348115b3412c96312b909f2f226c28.jpg",
             price:699,
             rating:9.8,
             stars:0,
@@ -52,9 +54,25 @@ class MovieList extends Component{
         const mid = movies.indexOf(movie);
         if (movies[mid].stars<=0)
         {return;    }
-        movies[mid].stars-=0.5
+        movies[mid].stars -=0.5
         this.setState({
             movies:movies
+        })
+    }
+    handleToggleFav=(movie)=>{
+        const  {movies}=this.state;
+        const mid = movies.indexOf(movie);
+        movies[mid].Fvt =!movies[mid].Fvt
+        this.setState({
+            movies
+        })
+    }
+    handleToggleCart=(movie)=>{
+        const  {movies}=this.state;
+        const mid = movies.indexOf(movie);
+        movies[mid].isInCart =!movies[mid].isInCart
+        this.setState({
+            movies
         })
     }
     render(){
@@ -63,7 +81,9 @@ class MovieList extends Component{
         return(
             <>
             {movies.map((movie)=><MovieCart movies={movie} addStars={this.handleIncStar}
-                                                            decStars={this.handleDecStar}  />)}
+                                                            decStars={this.handleDecStar} 
+                                                            toggleFvt={this.handleToggleFav}
+                                                            toggleCart={this.handleToggleCart} />)}
             
            
 
